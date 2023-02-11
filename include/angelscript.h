@@ -1181,7 +1181,7 @@ public:
 	virtual void            *GetUserData(asPWORD type = 0) const = 0;
 
 protected:
-	virtual ~asIScriptFunction() {};
+	virtual ~asIScriptFunction() {}
 };
 
 class asIBinaryStream

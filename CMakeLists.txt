@@ -4,6 +4,7 @@ project(angelscript)
 
 option(BUILD_SHARED_LIBS "Build shared library" OFF)
 option(AS_NO_EXCEPTIONS "Disable exception handling in script context" OFF)
+option(WITH_ADDONS "Compile angelscript's addons and include their headers" OFF)
 
 if(MSVC)
     option(MSVC_COMPILE_FLAGS "Compiler flags to use with MSVC" "/MP")
@@ -188,6 +189,12 @@ endif()
 
 # Don't override the default runtime output path to avoid conflicts when building for multiple target platforms
 #set(RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
+
+if(WITH_ADDONS)
+    add_subdirectory("${PROJECT_SOURCE_DIR}/add_on")
+    target_link_libraries(angelscript add_on)
+    target_include_directories(angelscript PUBLIC ${add_on_INCLUDE_DIRS})
+endif()
 
 #See https://cmake.org/cmake/help/latest/manual/cmake-packages.7.html#creating-packages for a detailed explanation about this part
 install(TARGETS ${ANGELSCRIPT_LIBRARY_NAME} EXPORT AngelscriptTargets
