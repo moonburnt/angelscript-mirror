@@ -1,24 +1,9 @@
-cmake_minimum_required(VERSION 3.5)
-
-set(ANGELSCRIPT_INCLUDE_DIR
-    ${CMAKE_SOURCE_DIR} CACHE STRING
-    "Path to the angelscript's 'include' directory"
-)
-
-project(contextmgr)
-
 add_library(contextmgr STATIC
     contextmgr.cpp
     contextmgr.h
 )
 
 target_include_directories(contextmgr PRIVATE
-    ${ANGELSCRIPT_INCLUDE_DIR}/include/
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${ANGELSCRIPT_INCLUDE_DIR}
 )
-
-target_include_directories(contextmgr PUBLIC
-    "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>"
-    "$<INSTALL_INTERFACE:${PROJECT_SOURCE_DIR}>"
-)
-
-
