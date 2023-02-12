@@ -191,9 +191,16 @@ endif()
 #set(RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 
 if(WITH_ADDONS)
+    set(ANGELSCRIPT_INCLUDE_DIR ${PROJECT_SOURCE_DIR} CACHE STRING "")
     add_subdirectory("${PROJECT_SOURCE_DIR}/add_on")
+    #target_link_libraries(angelscript add_on)
+    #link_directories("${PROJECT_SOURCE_DIR}/add_on")
     target_link_libraries(angelscript add_on)
-    target_include_directories(angelscript PUBLIC ${add_on_INCLUDE_DIRS})
+    #foreach(ADD_ON IN LISTS ADD_ONS)
+        #message(${ADD_ON})
+    #endforeach()
+    target_include_directories(${ANGELSCRIPT_LIBRARY_NAME} PUBLIC ${add_on_INCLUDE_DIRS})
+    #target_link_libraries(${ANGELSCRIPT_LIBRARY_NAME} ${ADD_ONS})
 endif()
 
 #See https://cmake.org/cmake/help/latest/manual/cmake-packages.7.html#creating-packages for a detailed explanation about this part
