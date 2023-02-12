@@ -1,5 +1,10 @@
 cmake_minimum_required(VERSION 3.5)
 
+set(ANGELSCRIPT_INCLUDE_DIR
+    ${CMAKE_SOURCE_DIR} CACHE STRING
+    "Path to the angelscript's 'include' directory"
+)
+
 project(scriptdictionary)
 
 add_library(scriptdictionary STATIC
@@ -8,7 +13,7 @@ add_library(scriptdictionary STATIC
 )
 
 target_include_directories(scriptdictionary PRIVATE
-    ${CMAKE_SOURCE_DIR}/include/
+    ${ANGELSCRIPT_INCLUDE_DIR}/include/
 )
 
 target_include_directories(scriptdictionary PUBLIC

@@ -1,5 +1,10 @@
 cmake_minimum_required(VERSION 3.5)
 
+set(ANGELSCRIPT_INCLUDE_DIR
+    ${CMAKE_SOURCE_DIR} CACHE STRING
+    "Path to the angelscript's 'include' directory"
+)
+
 project(autowrapper)
 
 add_library(autowrapper STATIC
@@ -11,7 +16,7 @@ add_library(autowrapper STATIC
 set_target_properties(autowrapper PROPERTIES LINKER_LANGUAGE CXX)
 
 target_include_directories(autowrapper PRIVATE
-    ${CMAKE_SOURCE_DIR}/include/
+    ${ANGELSCRIPT_INCLUDE_DIR}/include/
 )
 
 target_include_directories(autowrapper PUBLIC
